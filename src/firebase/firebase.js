@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCoT5nfKbgA4QBk31VkUhd10jrbcvcDp-Q",
-  authDomain: "harry-poter-web.firebaseapp.com",
-  projectId: "harry-poter-web",
-  storageBucket: "harry-poter-web.appspot.com",
-  messagingSenderId: "209536513845",
-  appId: "1:209536513845:web:cb9635c4330c897be27e7c",
-  measurementId: "G-J060HXZYRM",
+  apiKey: process.env.VITE_REACT_API_KEY,
+  authDomain: process.env.VITE_REACT_AUTH_DOMAIN,
+  projectId: process.env.VITE_REACT_PROJECT_ID,
+  storageBucket: process.env.VITE_REACT_STORAGE_BUCKET,
+  messagingSenderId: process.env.VITE_REACT_MESSAGING_SENDER_ID,
+  appId: process.env.VITE_REACT_APP_ID,
+  measurementId: process.env.VITE_REACT_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
