@@ -1,8 +1,13 @@
 import "./App.css";
 import Routes from "./routes";
+import { UserProvider } from "./context/UserProvider";
 
 function App() {
-  return <Routes />;
+  return (
+    <UserProvider>
+      <Routes />
+    </UserProvider>
+  );
 }
 
 export default App;
