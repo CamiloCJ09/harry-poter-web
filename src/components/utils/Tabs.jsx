@@ -16,7 +16,6 @@ export default function LabTabs({tabsNames, onChangeTab}) {
   LabTabs.propTypes = {
     onChangeTab: PropTypes.func.isRequired,
     tabsNames: PropTypes.array.isRequired,
-    currentTab: PropTypes.number.isRequired
   };
 
   const tabs = tabsNames.map((tab, index) => {
