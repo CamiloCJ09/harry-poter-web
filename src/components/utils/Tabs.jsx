@@ -5,10 +5,10 @@ import { TabContext } from '@mui/lab';
 import TabList from '@mui/lab/TabList';
 import PropTypes from 'prop-types';
 
-export default function LabTabs({tabsNames, onChangeTab}) {
+export default function LabTabs( { tabsNames , onChangeTab } ) {
   const [value, setValue] = React.useState('1');
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (newValue) => {
     onChangeTab(newValue);
     setValue(newValue);
   };
