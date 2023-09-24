@@ -39,9 +39,9 @@ const getPotions = async () => {
   return response.data;
 }
 
-const getPotionsInfo = async (id) => {
+const getPotionsInfo = async (potionId) => {
 
-  const response = await axios.get(`${BASE_URL}/v1/potions/${id}`);
+  const response = await axios.get(`${BASE_URL}/v1/potions/${potionId}`);
   return response.data;
 }
 
