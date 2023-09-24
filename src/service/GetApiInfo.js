@@ -46,7 +46,6 @@ const getPotionsInfo = async (potionId) => {
 }
 
 const functions = {
-
   getCharacters,
   getCharactersByBook,
   getBooks,
