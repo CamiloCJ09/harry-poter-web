@@ -1,15 +1,15 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
+import { TabContext } from '@mui/lab';
 import TabList from '@mui/lab/TabList';
 import PropTypes from 'prop-types';
 
 export default function LabTabs({tabsNames, onChangeTab}) {
   const [value, setValue] = React.useState('1');
 
-  const handleChange = (newValue) => {
-    onChangeTab();
+  const handleChange = (event, newValue) => {
+    onChangeTab(newValue);
     setValue(newValue);
   };
 
@@ -19,8 +19,9 @@ export default function LabTabs({tabsNames, onChangeTab}) {
   };
 
   const tabs = tabsNames.map((tab, index) => {
+
     return (
-      <Tab key={index} label={tab} value={index + 1} />
+      <Tab key={index} label={tab} value={index+""} />
     );
   });
 
@@ -29,7 +30,7 @@ export default function LabTabs({tabsNames, onChangeTab}) {
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
+          <TabList onChange={handleChange} aria-label="">
             {tabs}
           </TabList>
         </Box>
