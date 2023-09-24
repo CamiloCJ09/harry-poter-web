@@ -7,23 +7,23 @@ import PropTypes from 'prop-types';
 
 export default function InformationCard({image, character, description}) {
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardActionArea>
-                <CardMedia
-                    component="img"
-                    height="140"
-                    image={image == '' ? ' ../../assests/Nopicture.png' : image}
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {character}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {description}
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-        </Card>
+      <Card sx={{ maxWidth: 345 }}>
+          <CardActionArea>
+              <CardMedia
+                  component="img"
+                  height="140"
+                  image={image == '' ? ' ../../assests/Nopicture.png' : image}
+              />
+              <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                      {character}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                      {description}
+                  </Typography>
+              </CardContent>
+          </CardActionArea>
+      </Card>
     );
 }
 
