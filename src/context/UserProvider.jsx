@@ -5,20 +5,21 @@ const userContext = createContext();
 const registerContext = createContext();
 
 export const useUserContext = () => useContext(userContext);
-export const userRegisterContext = () => useContext(registerContext);
+export const useRegisterContext = () => useContext(registerContext);
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const registerContext = () => {
+
+  const registerUser = async (user) => {
     SignupService.register(user);
     setUser(user);
   };
+
   return (
-    <userContext.Provider value={{ user }}>
-      <userRegisterContext.Provider
-        value={{ registerContext }}
-      ></userRegisterContext.Provider>
-      {children}
+    <userContext.Provider value={user}>
+      <registerContext.Provider value={registerUser}>
+        {children}
+      </registerContext.Provider>
     </userContext.Provider>
   );
 };
