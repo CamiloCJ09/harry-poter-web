@@ -4,12 +4,17 @@ import { TextField, Container, Box, Button } from "@mui/material";
 import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
 import { InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useLoginContext } from "../../context/UserProvider";
 
 const LoginForm = () => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const loginUser = useLoginContext();
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -23,7 +28,11 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  const handleLogin = async (e) => {};
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await loginUser(username, password);
+    navigate("/", { replace: true });
+  };
 
   return (
     <Container component="main" maxWidth="xs">

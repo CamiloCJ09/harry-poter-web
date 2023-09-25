@@ -5,7 +5,7 @@ import { OutlinedInput, Button, Autocomplete } from "@mui/material";
 import { InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useRegisterContext } from "../../context/UserProvider";
 
 const formUser = {
   email: "",
@@ -21,6 +21,8 @@ const SignupForm = () => {
   const [dataUser, setDataUser] = useState(formUser);
   const [showPassword, setShowPassword] = useState(false);
 
+  const registerUser = useRegisterContext();
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
@@ -31,7 +33,11 @@ const SignupForm = () => {
     setDataUser({ ...dataUser, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = async (event) => {};
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await registerUser(dataUser);
+    navigate("/", { replace: true });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -52,6 +58,7 @@ const SignupForm = () => {
             margin="normal"
             fullWidth
             id="email"
+            type="email"
             label="Correo electrónico"
             name="email"
             autoFocus

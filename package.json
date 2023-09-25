@@ -15,12 +15,21 @@
     "@mui/icons-material": "^5.14.9",
     "@mui/lab": "^5.0.0-alpha.145",
     "@mui/material": "^5.14.10",
+<<<<<<< HEAD
+    "bcrypt": "^5.1.1",
+    "bcryptjs-react": "^2.4.6",
+    "crypto-js": "^4.1.1",
+=======
     "axios": "^1.5.0",
+>>>>>>> b19887eb6ae1fa37a42078b23aa422c12c2f48eb
     "firebase": "^10.4.0",
+    "jsonwebtoken": "^9.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-jwt": "^1.2.0",
     "react-router-dom": "^6.16.0",
-    "sweetalert2": "^11.7.28"
+    "sweetalert2": "^11.7.28",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
