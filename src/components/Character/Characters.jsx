@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import InformationCard from "../Information/InformationCard";
 import PropTypes from "prop-types";
-import { Grid } from "@mui/material";
 import Swal from "sweetalert2";
 import firebase from "../../firebase/firebase";
 import CharacterService from "../../service/CharacterService";
+import { ref, uploadBytes } from "@firebase/storage";
 
 const Characters = () => {
   const [characters, setCharacters] = useState([]);
@@ -32,11 +32,13 @@ const Characters = () => {
         const reader = new FileReader();
         reader.onload = async (e) => {
           try {
-            const storageRef = firebase.storage().ref();
-            const imageRef = storageRef.child(file.name); // Usar el nombre del archivo seleccionado
-            await imageRef.put(file); // Subir el archivo, no e.target.result
-            const url = await imageRef.getDownloadURL(); // Obtener la URL de descarga
-            firebaseUrl = url;
+            console.log(file);
+            const storage = firebase.storage;
+            const storageRef = ref(storage, file.name);
+
+            uploadBytes(storageRef, file).then((snapshot) => {
+              console.log("Uploaded a blob or file!");
+            });
           } catch (error) {
             console.error(error);
           }
