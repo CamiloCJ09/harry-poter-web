@@ -20,17 +20,7 @@ const getBooks = async () => {
   return response.data;
 }
 
-const getMovies = async () => {
 
-  const response = await axios.get(`${BASE_URL}/v1/movies`);
-  return response.data;
-}
-
-const getMoviesDetails = async (movieId) => {
-
-  const response = await axios.get(`${BASE_URL}/v1/movies/${movieId}`);
-  return response.data;
-}
 
 const getPotions = async () => {
 

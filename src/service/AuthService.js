@@ -86,7 +86,6 @@ const getSessionActive = async () => {
     querySnapshot.forEach((doc) => {
       user = doc.data();
     });
-    console.log(user);
     return {
       user: user,
       success: true,
