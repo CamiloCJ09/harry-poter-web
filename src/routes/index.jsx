@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Home, Login, Signup } from "../pages";
-
+import { useEffect } from "react";
 const ProtectedRoute = ({ children }) => {
   if (localStorage.getItem("token") === null) {
     return <Navigate to="/login" />;
