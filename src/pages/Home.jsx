@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Tabs from "../components/utils/Tabs";
 import Characters from "../components/Character/Characters";
 import Movies from "../components/Movies/Movies";
+import Potions from "../components/Potions/Potions";
 import { useUserContext } from "../context/UserProvider";
 import { useGetSessionActiveContext } from "../context/UserProvider";
 
@@ -42,7 +43,7 @@ const Home = () => {
         setComponent(<Movies />);
         break;
       case "2":
-        setComponent(<h1>3</h1>);
+        setComponent(<Potions />);
         break;
       default:
         setComponent(<h1>Selecciona una pestaña</h1>);
