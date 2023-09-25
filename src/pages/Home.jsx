@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
+import Tabs from "../components/utils/Tabs";
 import { useUserContext } from "../context/UserProvider";
 import { useGetSessionActiveContext } from "../context/UserProvider";
 
 const Home = () => {
   const getUserContext = useGetSessionActiveContext();
   let user = useUserContext();
+
+  const [tab, setTab] = useState(0);
+  useEffect(() => {  }, [tab]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -26,6 +29,9 @@ const Home = () => {
     <>
       <div>Hola</div>
       <p>{user?.firstName}</p>
+      <div>
+      <Tabs tabsNames={["Personajes", "Peliculas", "Pociones"]} onChangeTab={(value) => {setTab(value)}} />
+    </div>
     </>
   );
 };
