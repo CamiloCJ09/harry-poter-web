@@ -9,13 +9,12 @@ import PropTypes from "prop-types";
 
 const InformationCard = ({ type, image, title, attributes, onUpload }) => {
   const dataKeys = Object.keys(attributes);
-  const [imageSrc, setImageSrc] = useState(image);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        image={imageSrc === null ? " ../../assests/Nopicture.png" : imageSrc}
+        image={image === null ? "src/assets/NoPicture.png" : image}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -30,7 +29,7 @@ const InformationCard = ({ type, image, title, attributes, onUpload }) => {
       </CardContent>
       {type === "character" ? (
         <CardActions>
-          <Button size="small" onClick={setImageSrc(onUpload)}>
+          <Button size="small" onClick={onUpload}>
             Cargar imagen
           </Button>
         </CardActions>

@@ -17,9 +17,9 @@ const getBooks = async () => {
   return response.data;
 };
 
-const functions = {
+const CharacterService = {
   getCharacters,
   getCharactersByBook,
   getBooks,
 };
-export default functions;
+export default CharacterService;

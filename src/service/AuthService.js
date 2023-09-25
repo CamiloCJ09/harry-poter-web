@@ -19,7 +19,7 @@ const generateToken = (userId, email) => {
 };
 
 const register = async (dataUser) => {
-  const ref = collection(firebase, "users");
+  const ref = collection(firebase.db, "users");
   try {
     const hashedPwd = await hashedPassword(dataUser.password);
     const id = uuidv4();
@@ -41,7 +41,7 @@ const register = async (dataUser) => {
 
 const login = async (email, password) => {
   let user = {};
-  const ref = collection(firebase, "users");
+  const ref = collection(firebase.db, "users");
   const userQuery = query(ref, where("email", "==", email));
   const querySnapshot = await getDocs(userQuery);
 
@@ -79,7 +79,7 @@ const getSessionActive = async () => {
   if (localStorage.getItem("email")) {
     let user = {};
     const email = localStorage.getItem("email");
-    const ref = collection(firebase, "users");
+    const ref = collection(firebase.db, "users");
     const userQuery = query(ref, where("email", "==", email));
     const querySnapshot = await getDocs(userQuery);
 

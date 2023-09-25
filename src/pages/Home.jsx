@@ -10,21 +10,8 @@ const Home = () => {
   const [component, setComponent] = useState(<></>);
   const getUserContext = useGetSessionActiveContext();
   let user = useUserContext();
-
   const [tab, setTab] = useState(0);
-  //const [characters, setCharacters] = useState([]);
 
-  /***
-   * 
-   * NO DESCOMENTAR ESTO PORQUE SE FUETEA LA APPLICACION 
-   * useEffect(() => {
-    functions.getCharacters().then((data) => {
-      setCharacters(data.data);
-    });
-  }, []);
-
-   * 
-   * */
   useEffect(() => {
     const fetchUser = async () => {
       if (user === null) {
@@ -37,7 +24,7 @@ const Home = () => {
   useEffect(() => {
     switch (tab) {
       case "0":
-        setComponent(<Characters characters={[]} />);
+        setComponent(<Characters />);
         break;
       case "1":
         setComponent(<Movies />);

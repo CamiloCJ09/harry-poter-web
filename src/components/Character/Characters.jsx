@@ -1,11 +1,21 @@
+import React, { useState, useEffect } from "react";
 import InformationCard from "../Information/InformationCard";
 import PropTypes from "prop-types";
 import { Grid } from "@mui/material";
 import Swal from "sweetalert2";
 import firebase from "../../firebase/firebase";
+import CharacterService from "../../service/CharacterService";
 
-export default function Characters({ characters }) {
-  console.log("Los caracters en el componente", characters);
+const Characters = () => {
+  const [characters, setCharacters] = useState([]);
+
+  useEffect(() => {
+    CharacterService.getCharacters().then((data) => {
+      setCharacters(data.data);
+      console.log(data.data);
+    });
+  }, []);
+
   const onUpload = async () => {
     let firebaseUrl = "";
     const { value: file } = await Swal.fire({
@@ -13,45 +23,58 @@ export default function Characters({ characters }) {
       input: "file",
       inputAttributes: {
         accept: "image/*",
-        "aria-label": "Upload your profile picture",
+        "aria-label": "Sube la foto de perfil",
       },
     });
 
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const storageRef = firebase.storage().ref();
-        const imageRef = storageRef.child(e.target.result.name);
-        imageRef.put(e.target.result).then((snapshot) => {
-          snapshot.ref.getDownloadURL().then((url) => {
+      try {
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          try {
+            const storageRef = firebase.storage().ref();
+            const imageRef = storageRef.child(file.name); // Usar el nombre del archivo seleccionado
+            await imageRef.put(file); // Subir el archivo, no e.target.result
+            const url = await imageRef.getDownloadURL(); // Obtener la URL de descarga
             firebaseUrl = url;
-          });
-        });
-      };
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+        // Iniciar la lectura del archivo
+        reader.readAsDataURL(file);
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     return firebaseUrl;
   };
-  return (
-    <Grid container spacing={2}>
-      {console.log(typeof characters)}
-      {characters.map((character) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={character.id}>
-          <div>
-            <InformationCard
-              image={character.attributes.image}
-              title={character.attributes.name}
-              attributes={character.attributes}
-              type="character"
-              onUpload={onUpload}
-            />
-          </div>
-        </Grid>
-      ))}
-    </Grid>
-  );
-}
 
-Characters.propTypes = {
-  characters: PropTypes.array.isRequired,
+  return (
+    <div>
+      Personajes de Harry Potter
+      <div>
+        {characters.length !== 0 &&
+          characters.map((character) => {
+            let img = "";
+            character.attributes.image === null
+              ? (img = "")
+              : (img = character.attributes.image);
+            return (
+              <InformationCard
+                key={character.id}
+                type={character.type}
+                title={character.attributes.name}
+                attributes={character.attributes}
+                onUpload={onUpload}
+              />
+            );
+          })}
+      </div>
+    </div>
+  );
 };
+
+export default Characters;

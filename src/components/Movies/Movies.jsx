@@ -16,8 +16,6 @@ const Movies = () => {
       <div>
         {movies.length !== 0 &&
           movies.map((movie) => {
-            console.log("Data upload");
-            console.log(movie);
             return (
               <InformationCard
                 key={movie.id}
@@ -27,7 +25,6 @@ const Movies = () => {
                 type={movie.type}
               />
             );
-            //image, title, attributes , type , onUpload
           })}
       </div>
     </div>
