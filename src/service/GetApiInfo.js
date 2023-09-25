@@ -1,10 +1,9 @@
 import axios from "axios";
 
 
-const BASE_URL = "https://api.potterdb.com/";
+const BASE_URL = "https://api.potterdb.com";
 
 const getCharacters = async () => {
-
   const response = await axios.get(`${BASE_URL}/v1/characters`);
   return response.data;
 }

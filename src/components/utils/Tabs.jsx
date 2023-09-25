@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 export default function LabTabs( { tabsNames , onChangeTab } ) {
   const [value, setValue] = React.useState('1');
 
-  const handleChange = (newValue) => {
+  const handleChange = (event, newValue) => {
     onChangeTab(newValue);
     setValue(newValue);
   };

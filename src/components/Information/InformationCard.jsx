@@ -15,7 +15,7 @@ export default function InformationCard({ image, title, attributes , type , onUp
       <CardMedia
           component="img"
           height="140"
-          image={imageSrc == null ? " ../../assests/Nopicture.png" : imageSrc}
+          image={imageSrc === null ? " ../../assests/Nopicture.png" : imageSrc}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -47,7 +47,7 @@ export default function InformationCard({ image, title, attributes , type , onUp
 
 InformationCard.propTypes = {
   type: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
   title: PropTypes.string.isRequired,
   attributes: PropTypes.object.isRequired,
   onUpload: PropTypes.func 
