@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
+import { getDownloadURL, ref, getMetadata } from "@firebase/storage";
+import firebase from "../../firebase/firebase";
 
 const InformationCard = ({ type, image, title, attributes, onUpload, id }) => {
   const dataKeys = Object.keys(attributes);
@@ -17,8 +19,21 @@ const InformationCard = ({ type, image, title, attributes, onUpload, id }) => {
     setImgActual(fileURL);
   };
 
+  const getImgofCharacter = async () => {
+    try {
+      const storage = firebase.storage;
+      const storageRef = ref(storage, id + ".png");
+      const metadata = await getMetadata(storageRef);
+      if (metadata) {
+        const url = await getDownloadURL(storageRef);
+        if (url !== null) setImgActual(url);
+      }
+    } catch (error) {}
+  };
+
   useEffect(() => {
     if (type === "character") {
+      getImgofCharacter();
     }
   });
   return (
