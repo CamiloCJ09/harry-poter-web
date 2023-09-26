@@ -16,8 +16,7 @@ const Characters = () => {
     });
   }, []);
 
-  const onUpload = async () => {
-    let firebaseUrl = "";
+  const onUpload = async (id) => {
     const { value: file } = await Swal.fire({
       title: "Selecciona una imagen",
       input: "file",
@@ -32,9 +31,8 @@ const Characters = () => {
         const reader = new FileReader();
         reader.onload = async (e) => {
           try {
-            console.log(file);
             const storage = firebase.storage;
-            const storageRef = ref(storage, file.name);
+            const storageRef = ref(storage, id + ".png");
 
             uploadBytes(storageRef, file).then((snapshot) => {
               console.log("Uploaded a blob or file!");
@@ -43,15 +41,12 @@ const Characters = () => {
             console.error(error);
           }
         };
-
-        // Iniciar la lectura del archivo
         reader.readAsDataURL(file);
       } catch (error) {
         console.error(error);
       }
     }
-
-    return firebaseUrl;
+    return file;
   };
 
   return (
@@ -70,7 +65,8 @@ const Characters = () => {
                 type={character.type}
                 title={character.attributes.name}
                 attributes={character.attributes}
-                onUpload={onUpload}
+                id={character.id}
+                onUpload={() => onUpload(character.id)}
               />
             );
           })}

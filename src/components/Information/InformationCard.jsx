@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -7,14 +7,26 @@ import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 import PropTypes from "prop-types";
 
-const InformationCard = ({ type, image, title, attributes, onUpload }) => {
+const InformationCard = ({ type, image, title, attributes, onUpload, id }) => {
   const dataKeys = Object.keys(attributes);
+  const [imgActual, setImgActual] = useState(image);
+
+  const handleUpload = async () => {
+    const newImg = await onUpload();
+    const fileURL = URL.createObjectURL(newImg);
+    setImgActual(fileURL);
+  };
+
+  useEffect(() => {
+    if (type === "character") {
+    }
+  });
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        image={image === null ? "src/assets/NoPicture.png" : image}
+        src={imgActual === null ? "src/assets/NoPicture.png" : imgActual}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -29,7 +41,7 @@ const InformationCard = ({ type, image, title, attributes, onUpload }) => {
       </CardContent>
       {type === "character" ? (
         <CardActions>
-          <Button size="small" onClick={onUpload}>
+          <Button size="small" onClick={handleUpload}>
             Cargar imagen
           </Button>
         </CardActions>
@@ -46,6 +58,7 @@ InformationCard.propTypes = {
   title: PropTypes.string.isRequired,
   attributes: PropTypes.object.isRequired,
   onUpload: PropTypes.func,
+  id: PropTypes.string,
 };
 
 export default InformationCard;
