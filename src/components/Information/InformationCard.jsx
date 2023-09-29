@@ -28,7 +28,9 @@ const InformationCard = ({ type, image, title, attributes, onUpload, id }) => {
         const url = await getDownloadURL(storageRef);
         if (url !== null) setImgActual(url);
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

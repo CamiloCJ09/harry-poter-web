@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Tabs from "../components/utils/Tabs";
 import Characters from "../components/Character/Characters";
 import Movies from "../components/Movies/Movies";
