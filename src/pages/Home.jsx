@@ -22,7 +22,7 @@ const Home = () => {
     localStorage.removeItem("movies");
     localStorage.removeItem("characters");
     localStorage.removeItem("potions");
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   useEffect(() => {
