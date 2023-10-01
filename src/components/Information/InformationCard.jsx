@@ -5,14 +5,18 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PropTypes from "prop-types";
 import { getDownloadURL, ref, getMetadata } from "@firebase/storage";
 import firebase from "../../firebase/firebase";
 
 const InformationCard = ({ type, image, title, attributes, onUpload, id }) => {
   const dataKeys = Object.keys(attributes);
-  const [imgActual, setImgActual] = useState(image);
 
+  const [imgActual, setImgActual] = useState(image);
   const handleUpload = async () => {
     const newImg = await onUpload();
     const fileURL = URL.createObjectURL(newImg);
@@ -29,32 +33,41 @@ const InformationCard = ({ type, image, title, attributes, onUpload, id }) => {
         if (url !== null) setImgActual(url);
       }
     } catch (error) {
-      console.log(error);
+      setImgActual("src/assets/noimg.png");
     }
   };
 
   useEffect(() => {
-    if (type === "character") {
+    if (type === "character" && image === "") {
       getImgofCharacter();
     }
   });
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="140"
-        src={imgActual === null ? "src/assets/NoPicture.png" : imgActual}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+    <Card className="card">
+      <CardMedia component="img" height="350" width="350" image={imgActual} />
+      <CardContent className="card-content">
+        <Typography gutterBottom variant="h5">
           {title}
         </Typography>
-        {dataKeys.map((key) => (
-          <div key={key}>
-            <Typography variant="h6">{key}</Typography>
-            <Typography>{attributes[key]}</Typography>
-          </div>
-        ))}
+        {dataKeys.map(
+          (key) =>
+            attributes[key] !== null &&
+            key !== "image" && (
+              <Accordion key={key}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography>{key}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Typography>{attributes[key]}</Typography>
+                </AccordionDetails>
+              </Accordion>
+            )
+        )}
       </CardContent>
       {type === "character" ? (
         <CardActions>

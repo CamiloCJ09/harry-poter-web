@@ -1,5 +1,4 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -40,3 +39,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.main-app-bar {
+  display: flex;
+  justify-content: space-between; /* Esto distribuirá los elementos en el espacio disponible */
+}
+
+.app-bar-content {
+  flex-grow: 1; /* Esto hará que el contenido del ApplicationBar ocupe todo el espacio disponible */
+}
+

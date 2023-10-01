@@ -21,5 +21,6 @@ const CharacterService = {
   getCharacters,
   getCharactersByBook,
   getBooks,
+  
 };
 export default CharacterService;

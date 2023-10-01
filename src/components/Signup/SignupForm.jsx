@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Typography, TextField, ThemeProvider, Container } from "@mui/material";
-import { Box, createTheme, FormControl, InputLabel } from "@mui/material";
-import { OutlinedInput, Button, Autocomplete } from "@mui/material";
+import { useState } from "react";
+import { Typography, TextField,  Container } from "@mui/material";
+import { Box,  FormControl, InputLabel } from "@mui/material";
+import { OutlinedInput, Button, } from "@mui/material";
 import { InputAdornment, IconButton } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -51,7 +51,7 @@ const SignupForm = () => {
       >
         <Box component="form" sx={{ mt: 1 }} onSubmit={handleSubmit}>
           <Typography variant="h4" component="h4" sx={{ textAlign: "center" }}>
-            Crea una cuenta
+            Crea una cuenta en Harry Potter DB
           </Typography>
           <TextField
             color="primary"
@@ -64,6 +64,7 @@ const SignupForm = () => {
             autoFocus
             sx={{ mb: 3 }}
             onChange={handleChange}
+            required
           />
           <FormControl
             fullWidth
@@ -90,6 +91,7 @@ const SignupForm = () => {
                 </InputAdornment>
               }
               label="Password"
+              required
             />
           </FormControl>
           <TextField

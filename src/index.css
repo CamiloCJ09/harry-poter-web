@@ -34,6 +34,19 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: #111011;
+
+}
+
+h2 {
+  color: #000000;
+  line-height: 1.1;
+}
+
+
+h4 {
+  color: #000000;
+  line-height: 1.1;
 }
 
 button {
